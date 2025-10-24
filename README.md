@@ -26,8 +26,6 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1. Clone the repo
 
-- git clone [\[\]](https://github.com/senthil-kumari/notesapp-react-typescript)
-
 2. Install dependency
 
 - npm install
