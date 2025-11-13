@@ -9,6 +9,7 @@ import { NoteList } from "./NoteList";
 import { NoteLayout } from "./NoteLayout";
 import { Note } from "./Note";
 import { EditNote } from "./EditNote";
+import "./index.css";
 export type Note = {
   id: string;
 } & NoteData;
@@ -25,6 +26,7 @@ export type NoteData = {
   title: string;
   markdown: string;
   tags: Tag[];
+  color: string;
 };
 export type Tag = {
   id: string;
@@ -46,8 +48,8 @@ function App() {
   function onCreateNote({ tags, ...data }: NoteData) {
     setNotes((prevNotes) => {
       return [
-        ...prevNotes,
         { ...data, id: uuidv4(), tagIds: tags.map((tag) => tag.id) },
+        ...prevNotes,
       ];
     });
   }
@@ -88,7 +90,7 @@ function App() {
     });
   }
   return (
-    <Container className="my-4">
+    <Container className="my-4 mx-auto">
       <Routes>
         <Route
           path="/"

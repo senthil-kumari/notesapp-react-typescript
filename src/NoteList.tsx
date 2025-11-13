@@ -16,6 +16,8 @@ export type SimplifiedNote = {
   id: string;
   title: string;
   tags: Tag[];
+  color: string;
+  markdown: string;
 };
 
 type EditTagsModalProps = {
@@ -52,16 +54,14 @@ export function NoteList({
   return (
     <>
       <Row className="align-items-center mb-4">
-        <Col>
-          <h1>Notes</h1>
-        </Col>
+        <Col></Col>
         <Col xs="auto">
           <Stack direction="horizontal" gap={2}>
             <Link to="/new">
               <Button>Create</Button>
             </Link>
             <Button
-              variant="outline-secondary"
+              variant="warning"
               onClick={() => setEditTagsModalIsOpen(true)}
             >
               Edit Tags
@@ -69,23 +69,28 @@ export function NoteList({
           </Stack>
         </Col>
       </Row>
+
       <Form>
         <Row className="mb-4">
           <Col>
             <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>🔎Search by Title</Form.Label>
               <Form.Control
                 type="text"
                 value={title}
+                disabled={notes.length === 0}
+                placeholder="e.g. exam prep"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="tags">
-              <Form.Label>Tags</Form.Label>
+              <Form.Label>Filter by Tags</Form.Label>
               <ReactSelect
                 isMulti
+                placeholder="Select tags..."
+                isDisabled={notes.length === 0}
                 value={selectedTags.map((tag) => {
                   return {
                     label: tag.label,
@@ -110,13 +115,39 @@ export function NoteList({
           </Col>
         </Row>
       </Form>
-      <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
-        {filteredNotes.map((note) => (
-          <Col key={note.id}>
-            <NoteCard id={note.id} title={note.title} tags={note.tags} />
-          </Col>
-        ))}
-      </Row>
+
+      {notes.length > 0 ? (
+        <Row
+          xs={1}
+          sm={2}
+          lg={3}
+          xl={4}
+          className="g-4 pb-5 justify-content-center"
+        >
+          {filteredNotes.map((note) => (
+            <Col key={note.id} className="card-container">
+              <NoteCard
+                id={note.id}
+                title={note.title}
+                tags={note.tags}
+                color={note.color}
+                markdown={note.markdown}
+              />
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <div
+          className="d-flex flex-column align-items-center justify-content-center"
+          style={{ minHeight: "55vh" }}
+        >
+          <p className="no-notes-msg">Every great idea starts with a note📝.</p>
+          <p className="no-notes-msg">
+            {" "}
+            Click <b>Create</b> to begin.
+          </p>
+        </div>
+      )}
       <EditTagsModal
         onUpdateTag={onUpdateTag}
         onDeleteTag={onDeleteTag}
