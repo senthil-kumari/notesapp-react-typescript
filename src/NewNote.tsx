@@ -5,7 +5,11 @@ type NewNoteProps = {
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
 };
-export function NewNote({ onSubmit, onAddTag, availableTags }: NewNoteProps) {
+export default function NewNote({
+  onSubmit,
+  onAddTag,
+  availableTags,
+}: NewNoteProps) {
   return (
     <>
       <h2 className="mb-4 text-dark">Add New Note</h2>

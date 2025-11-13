@@ -28,7 +28,7 @@ type EditTagsModalProps = {
   onUpdateTag: (id: string, label: string) => void;
 };
 
-export function NoteList({
+export default function NoteList({
   availableTags,
   notes,
   onDeleteTag,

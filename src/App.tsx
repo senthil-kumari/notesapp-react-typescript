@@ -1,14 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { lazy } from "react";
 import { Container } from "react-bootstrap";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { NewNote } from "./NewNote";
 import { useMemo } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
-import { NoteList } from "./NoteList";
-import { NoteLayout } from "./NoteLayout";
-import { Note } from "./Note";
-import { EditNote } from "./EditNote";
+
+const NewNote = lazy(() => import("./NewNote"));
+const NoteList = lazy(() => import("./NoteList"));
+const NoteLayout = lazy(() => import("./NoteLayout"));
+const Note = lazy(() => import("./Note"));
+const EditNote = lazy(() => import("./EditNote"));
 import "./index.css";
 export type Note = {
   id: string;

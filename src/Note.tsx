@@ -7,7 +7,7 @@ import { useState } from "react";
 type NoteProps = {
   onDelete: (id: string) => void;
 };
-export function Note({ onDelete }: NoteProps) {
+export default function Note({ onDelete }: NoteProps) {
   const note = useNote();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
