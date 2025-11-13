@@ -28,18 +28,18 @@ footer {
 
 
 .no-notes-msg{
- font-size: 1.3rem;
+ font-size: 1.1rem;
 }
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .no-notes-msg {
-    font-size: 2.5rem; /* Larger on tablets */
+    font-size: 2rem; /* Larger on tablets */
   }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .no-notes-msg {
-    font-size: 3.5rem; /* Even larger on desktops */
+    font-size: 2.5rem; /* Even larger on desktops */
   }
 }
 

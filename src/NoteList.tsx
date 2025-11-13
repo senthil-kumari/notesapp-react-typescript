@@ -138,12 +138,11 @@ export function NoteList({
         </Row>
       ) : (
         <div
-          className="d-flex flex-column align-items-center justify-content-center"
+          className="d-flex flex-column align-items-center justify-content-center no-notes-msg"
           style={{ minHeight: "55vh" }}
         >
-          <p className="no-notes-msg">Every great idea starts with a note📝.</p>
-          <p className="no-notes-msg">
-            {" "}
+          <p>Every great idea starts with a note📝.</p>
+          <p>
             Click <b>Create</b> to begin.
           </p>
         </div>
