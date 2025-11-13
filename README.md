@@ -1,4 +1,4 @@
-# React + TypeScript Notes App
+# NoteFlow App
 
 ## Overview
 
@@ -13,6 +13,7 @@ The application leverages the browser's Local Storage for persistent data, allow
 - Persistent Storage: Notes are saved and loaded from the browser's localStorage using a custom React hook (useLocalStorage)
 - Filter the notes using phrases and tags
 - Markdown content support using react-markdown
+- Choose color for each note
 
 ## Tech Stack
 
@@ -33,3 +34,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 3. Run the application in development mode:
 
 - npm run dev
+
+
+🌐 Live Demo  
+🔗 [NoteFlow](https://notesapp-react-typescript.vercel.app/)
