@@ -1,19 +1,12 @@
 import { useRef, useState, type FormEvent } from "react";
-import {
-  Button,
-  Col,
-  Form,
-  OverlayTrigger,
-  Row,
-  Stack,
-  Tooltip,
-} from "react-bootstrap";
+import { Button, Col, Form, Row, Stack } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
 import { type NoteData } from "./App";
 import { type Tag } from "./App";
 import { v4 as uuidv4 } from "uuid";
 import { ColorPicker } from "./Colorpicker";
+import Tiptap from "./Tiptap";
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
@@ -30,7 +23,7 @@ export function NoteForm({
   color = "#EBEBEA",
 }: NoteFormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
-  const markDownRef = useRef<HTMLTextAreaElement>(null);
+  const [bodyContent, setBodyContent] = useState("");
   const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const [selectedColor, setSelectedColor] = useState(color);
   const navigate = useNavigate();
@@ -39,7 +32,7 @@ export function NoteForm({
     e.preventDefault();
     onSubmit({
       title: titleRef.current!.value,
-      markdown: markDownRef.current!.value,
+      markdown: bodyContent,
       tags: selectedTags,
       color: selectedColor,
     });
@@ -47,7 +40,7 @@ export function NoteForm({
     navigate("..");
   }
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Stack gap={4} className="mb-3">
         <Row>
           <Col md={3} sm={12}>
@@ -106,40 +99,12 @@ export function NoteForm({
           </Col>
         </Row>
 
-        <Form.Group controlId="markdown">
-          <Form.Label>
-            Body
-            <OverlayTrigger
-              placement="right"
-              overlay={<Tooltip>Supports Markdown</Tooltip>}
-            >
-              <span style={{ marginLeft: "5px", cursor: "pointer" }}>ℹ️</span>
-            </OverlayTrigger>
-          </Form.Label>
-          <Form.Control
-            required
-            as="textarea"
-            rows={13}
-            placeholder="Add your note body… (Markdown supported)"
-            ref={markDownRef}
-            defaultValue={markdown}
-            maxLength={500}
-          />
-        </Form.Group>
-        <Form.Text className="text-muted">
-          Supports <strong>Markdown</strong>.{" "}
-          <a
-            href="https://commonmark.org/help/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn how
-          </a>
-          .
-        </Form.Text>
+        <div>
+          <Tiptap setBodyContent={setBodyContent} bodyContent={markdown} />
+        </div>
       </Stack>
       <Stack direction="horizontal" gap={2} className="justify-content-end p-4">
-        <Button type="submit" variant="primary">
+        <Button type="button" variant="primary" onClick={handleSubmit}>
           Save
         </Button>
         <Link to="..">

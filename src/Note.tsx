@@ -61,7 +61,7 @@ export default function Note({ onDelete }: NoteProps) {
               className="m-3 markdown-content"
               style={{ whiteSpace: "pre-wrap" }}
             >
-              <ReactMarkdown>{note.markdown}</ReactMarkdown>
+              <div dangerouslySetInnerHTML={{ __html: note.markdown }} />
             </div>
           </Col>
         </Row>

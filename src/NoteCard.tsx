@@ -13,6 +13,11 @@ const rotationClasses = [
 const getRandomRotationClass = () =>
   rotationClasses[Math.floor(Math.random() * rotationClasses.length)];
 
+const stripHtmlTags = (htmlString: string) => {
+  const doc = new DOMParser().parseFromString(htmlString, "text/html");
+  return doc.body.textContent || "";
+};
+
 export function NoteCard({ id, title, tags, color, markdown }: SimplifiedNote) {
   const [rotationClass] = useState(getRandomRotationClass);
   return (
@@ -34,7 +39,7 @@ export function NoteCard({ id, title, tags, color, markdown }: SimplifiedNote) {
           textOverflow: "ellipsis",
         }}
       >
-        {markdown}
+        {stripHtmlTags(markdown)}
       </Card.Text>
       <Card.Body>
         <Stack
