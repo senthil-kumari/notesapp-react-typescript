@@ -40,7 +40,7 @@ export function NoteForm({
     navigate("..");
   }
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Stack gap={4} className="mb-3">
         <Row>
           <Col md={3} sm={12}>
@@ -104,7 +104,7 @@ export function NoteForm({
         </div>
       </Stack>
       <Stack direction="horizontal" gap={2} className="justify-content-end p-4">
-        <Button type="button" variant="primary" onClick={handleSubmit}>
+        <Button type="submit" variant="primary">
           Save
         </Button>
         <Link to="..">

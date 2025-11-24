@@ -12,7 +12,7 @@ export default function NewNote({
 }: NewNoteProps) {
   return (
     <>
-      <h2 className="mb-4 text-dark">Add New Note</h2>
+      <h2 className="mb-4 text-dark">Add Note</h2>
       <NoteForm
         onSubmit={onSubmit}
         onAddTag={onAddTag}

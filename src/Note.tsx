@@ -1,7 +1,7 @@
 import { Badge, Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import { useNote } from "./NoteLayout";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type NoteProps = {
   onDelete: (id: string) => void;
@@ -10,13 +10,23 @@ export default function Note({ onDelete }: NoteProps) {
   const note = useNote();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const noteContentRef = useRef<HTMLDivElement>(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  useEffect(() => {
+    if (note && noteContentRef.current) {
+      noteContentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
   return (
     <>
       <div
-        className="stickyNoteDetail p-4 shadow-lg pinnedNote "
+        ref={noteContentRef}
+        className="stickyNoteDetail p-4  shadow-lg pinnedNote "
         style={{
           background: `linear-gradient(${note.color}, ${note.color}d0)`,
         }}
