@@ -11,7 +11,9 @@ const NoteList = lazy(() => import("./NoteList"));
 const NoteLayout = lazy(() => import("./NoteLayout"));
 const Note = lazy(() => import("./Note"));
 const EditNote = lazy(() => import("./EditNote"));
+import { useAppToast } from "./Toast";
 import "./index.css";
+
 export type Note = {
   id: string;
 } & NoteData;
@@ -36,8 +38,23 @@ export type Tag = {
   label: string;
 };
 function App() {
-  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
-  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
+  const { showToast } = useAppToast();
+  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", [], {
+    onError: () => {
+      showToast({
+        message: "Storage full! Please delete some notes.",
+        variant: "danger",
+      });
+    },
+  });
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", [], {
+    onError: () => {
+      showToast({
+        message: "Storage full! Please delete some notes.",
+        variant: "danger",
+      });
+    },
+  });
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
@@ -93,7 +110,7 @@ function App() {
     });
   }
   return (
-    <Container className="my-4 mx-auto">
+    <Container className="mx-auto main-container">
       <Routes>
         <Route
           path="/"

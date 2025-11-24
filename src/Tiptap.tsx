@@ -3,6 +3,7 @@ import { TextStyleKit } from "@tiptap/extension-text-style";
 import type { Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import DOMPurify from "dompurify";
+import CharacterCount from "@tiptap/extension-character-count";
 import {
   FaBold,
   FaItalic,
@@ -20,6 +21,7 @@ type TiptapProps = {
   bodyContent: string;
 };
 
+const MAX_CHARACTERS = 2000;
 const MenuBar = ({ editor }: { editor: Editor }) => {
   const editorState = useEditorState({
     editor,
@@ -119,7 +121,13 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
 };
 const Tiptap = ({ setBodyContent, bodyContent }: TiptapProps) => {
   const editor = useEditor({
-    extensions: [StarterKit, TextStyleKit],
+    extensions: [
+      StarterKit,
+      TextStyleKit,
+      CharacterCount.configure({
+        limit: MAX_CHARACTERS,
+      }),
+    ],
     content: bodyContent,
     onUpdate: ({ editor }) => {
       const rawHtml = editor.getHTML();
@@ -129,10 +137,20 @@ const Tiptap = ({ setBodyContent, bodyContent }: TiptapProps) => {
   });
 
   return (
-    <div className="text-editor">
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
-    </div>
+    <>
+      <div className="d-flex justify-content-end">
+        {editor && (
+          <div className="text-muted small">
+            {editor.storage.characterCount.characters()}/{MAX_CHARACTERS}{" "}
+            characters
+          </div>
+        )}
+      </div>
+      <div className="text-editor">
+        <MenuBar editor={editor} />
+        <EditorContent editor={editor} />
+      </div>
+    </>
   );
 };
 
