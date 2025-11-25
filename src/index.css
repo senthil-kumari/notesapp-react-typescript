@@ -23,6 +23,7 @@ header::after {
 .main-container{
   margin-top: 80px;
   scroll-margin-top: 80px;
+  margin-bottom: 30px;
 }
 
 footer {
@@ -108,12 +109,17 @@ footer {
    scroll-margin-top: 80px;
 }
 
-.markdown-content {
+.content {
   min-height: 500px;
   height: 500px;
   overflow-y: auto;
 }
-
+.content ul p{
+ margin-bottom: 0.25rem;
+}
+.content ol p{
+  margin-bottom: 0.25rem;
+}
 /* top “tape” */
 .sticky-note-detail::before {
   content: "";
@@ -129,9 +135,7 @@ footer {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.sticky-note-detail div {
-  line-height: 1.6;
-}
+
 .sticky-note-detail {
   animation: dropIn 0.4s ease;
 }
@@ -149,7 +153,6 @@ footer {
 .text-editor {
   border-radius: 5px;
   border: 1px solid grey;
-  height: 50vh;
 }
 .menu-bar {
   padding-bottom: 5px;
@@ -192,12 +195,20 @@ button.is-active {
   border-radius: 2px;
 }
 /* Basic editor styles */
+.tiptap-editor-container{
+  overflow-y: auto; 
+  border: 1px solid #ccc;
+  padding: 10px; 
+}
+
+.tiptap-editor-container > div{
+  height: 40vh; 
+}
+
 .tiptap {
   padding: 10px;
-  border-top: 1px solid grey;
   background-color: white;
   border-radius: 0 0 5px 5px;
-  min-height: 100px;
 }
 .tiptap :first-child {
   margin-top: 0;

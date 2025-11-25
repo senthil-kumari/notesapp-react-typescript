@@ -18,7 +18,7 @@ const stripHtmlTags = (htmlString: string) => {
   return doc.body.textContent || "";
 };
 
-export function NoteCard({ id, title, tags, color, markdown }: SimplifiedNote) {
+export function NoteCard({ id, title, tags, color, content }: SimplifiedNote) {
   const [rotationClass] = useState(getRandomRotationClass);
   return (
     <Card
@@ -39,7 +39,7 @@ export function NoteCard({ id, title, tags, color, markdown }: SimplifiedNote) {
           textOverflow: "ellipsis",
         }}
       >
-        {stripHtmlTags(markdown)}
+        {stripHtmlTags(content)}
       </Card.Text>
       <Card.Body>
         <Stack

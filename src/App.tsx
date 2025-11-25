@@ -23,13 +23,13 @@ export type RawNote = {
 } & RawNoteData;
 export type RawNoteData = {
   title: string;
-  markdown: string;
+  content: string;
   color: string;
   tagIds: string[];
 };
 export type NoteData = {
   title: string;
-  markdown: string;
+  content: string;
   tags: Tag[];
   color: string;
 };

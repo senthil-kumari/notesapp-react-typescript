@@ -18,7 +18,7 @@ export default function EditNote({
       <NoteForm
         title={note.title}
         color={note.color}
-        markdown={note.markdown}
+        content={note.content}
         tags={note.tags}
         onSubmit={(data) => onSubmit(note.id, data)}
         onAddTag={onAddTag}

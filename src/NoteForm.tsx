@@ -21,13 +21,13 @@ export function NoteForm({
   onAddTag,
   availableTags,
   title = "",
-  markdown = "",
+  content = "",
   tags = [],
   color = "#EBEBEA",
   successMessage,
 }: NoteFormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
-  const [bodyContent, setBodyContent] = useState("");
+  const [bodyContent, setBodyContent] = useState(content);
   const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const [selectedColor, setSelectedColor] = useState(color);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ export function NoteForm({
     e.preventDefault();
     onSubmit({
       title: titleRef.current!.value,
-      markdown: bodyContent,
+      content: bodyContent,
       tags: selectedTags,
       color: selectedColor,
     });
@@ -108,7 +108,7 @@ export function NoteForm({
         </Row>
 
         <div>
-          <Tiptap setBodyContent={setBodyContent} bodyContent={markdown} />
+          <Tiptap setBodyContent={setBodyContent} bodyContent={bodyContent} />
         </div>
       </Stack>
       <Stack direction="horizontal" gap={2} className="justify-content-end p-4">

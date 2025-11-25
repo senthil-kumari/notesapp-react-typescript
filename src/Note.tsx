@@ -66,11 +66,8 @@ export default function Note({ onDelete }: NoteProps) {
         </Row>
         <Row>
           <Col>
-            <div
-              className="m-3 markdown-content"
-              style={{ whiteSpace: "pre-wrap" }}
-            >
-              <div dangerouslySetInnerHTML={{ __html: note.markdown }} />
+            <div className="m-3 content" style={{ whiteSpace: "pre-wrap" }}>
+              <div dangerouslySetInnerHTML={{ __html: note.content }} />
             </div>
           </Col>
         </Row>
