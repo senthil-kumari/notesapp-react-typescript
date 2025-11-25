@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import pencilIcon from "./assets/pencil-logo.jpg";
 import { Link } from "react-router-dom";
 
