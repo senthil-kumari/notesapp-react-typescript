@@ -10,10 +10,10 @@ The application leverages the browser's Local Storage for persistent data, allow
 
 - Create a new Note along with existing or new tags, Read/View all Notes, Update an existing Note and Delete Note
 - Edit and Delete existing Tags
+- Pick a color🎨 for each note
 - Persistent Storage: Notes are saved and loaded from the browser's localStorage using a custom React hook (useLocalStorage)
-- Filter the notes using phrases and tags
-- Markdown content support using react-markdown
-- Choose color for each note
+- Filter the notes using note title and tags
+- **Rich Text Editor** for formatting the Note body using Tiptap(https://tiptap.dev/)
 
 ## Tech Stack
 
@@ -37,4 +37,4 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 
 🌐 Live Demo  
-🔗 [NoteFlow](https://notesapp-react-typescript.vercel.app/)
+🔗 [NoteFlow](https://noteflow-tool.vercel.app/)
