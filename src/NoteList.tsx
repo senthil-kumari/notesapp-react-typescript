@@ -17,7 +17,7 @@ export type SimplifiedNote = {
   title: string;
   tags: Tag[];
   color: string;
-  markdown: string;
+  content: string;
 };
 
 type EditTagsModalProps = {
@@ -131,7 +131,7 @@ export default function NoteList({
                 title={note.title}
                 tags={note.tags}
                 color={note.color}
-                markdown={note.markdown}
+                content={note.content}
               />
             </Col>
           ))}
