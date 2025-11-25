@@ -21,7 +21,8 @@ header::after {
 } 
 
 .main-container{
-  margin-top: 75px;
+  margin-top: 80px;
+  scroll-margin-top: 80px;
 }
 
 footer {
@@ -97,13 +98,14 @@ footer {
   transform: rotate(0.5deg);
 }
 
-.stickyNoteDetail {
+.sticky-note-detail {
   width: min(900px, 90%);
   margin: 15px auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   box-shadow: 6px 10px 18px rgba(0, 0, 0, 0.3);
   position: relative;
+   scroll-margin-top: 80px;
 }
 
 .markdown-content {
@@ -113,7 +115,7 @@ footer {
 }
 
 /* top “tape” */
-.stickyNoteDetail::before {
+.sticky-note-detail::before {
   content: "";
   position: absolute;
   top: -12px;
@@ -127,10 +129,10 @@ footer {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.stickyNoteDetail div {
+.sticky-note-detail div {
   line-height: 1.6;
 }
-.stickyNoteDetail {
+.sticky-note-detail {
   animation: dropIn 0.4s ease;
 }
 @keyframes dropIn {
@@ -147,6 +149,7 @@ footer {
 .text-editor {
   border-radius: 5px;
   border: 1px solid grey;
+  height: 50vh;
 }
 .menu-bar {
   padding-bottom: 5px;

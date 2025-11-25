@@ -23,6 +23,7 @@ export default function EditNote({
         onSubmit={(data) => onSubmit(note.id, data)}
         onAddTag={onAddTag}
         availableTags={availableTags}
+        successMessage="Note updated successfully"
       />
     </>
   );

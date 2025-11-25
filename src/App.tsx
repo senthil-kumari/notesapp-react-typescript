@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { lazy } from "react";
+import { lazy, useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useMemo } from "react";
@@ -39,11 +39,13 @@ export type Tag = {
 };
 function App() {
   const { showToast } = useAppToast();
+  const mainContentRef = useRef<HTMLDivElement>(null);
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", [], {
     onError: () => {
       showToast({
         message: "Storage full! Please delete some notes.",
         variant: "danger",
+        title: "Error",
       });
     },
   });
@@ -52,8 +54,18 @@ function App() {
       showToast({
         message: "Storage full! Please delete some notes.",
         variant: "danger",
+        title: "Error",
       });
     },
+  });
+
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   });
 
   const notesWithTags = useMemo(() => {
@@ -110,7 +122,7 @@ function App() {
     });
   }
   return (
-    <Container className="mx-auto main-container">
+    <Container className="mx-auto main-container" ref={mainContentRef}>
       <Routes>
         <Route
           path="/"

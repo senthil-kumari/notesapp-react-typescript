@@ -4,6 +4,7 @@ import Toast from "react-bootstrap/Toast";
 
 type ToastOptions = {
   message: string;
+  title?: string;
   variant?: "success" | "danger" | "warning" | "info" | "primary" | "secondary";
 };
 
@@ -16,27 +17,33 @@ const ToastContext = createContext<ToastContextType | null>(null);
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toast, setToast] = useState<ToastOptions & { show: boolean }>({
     message: "",
+    title: "",
     variant: "primary",
     show: false,
   });
 
-  const showToast = ({ message, variant = "primary" }: ToastOptions) => {
-    setToast({ message, variant, show: true });
+  const showToast = ({ message, variant = "primary", title }: ToastOptions) => {
+    setToast({ message, variant, show: true, title });
   };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
 
-      <ToastContainer position="middle-center" className="p-3">
+      <ToastContainer position="top-center" className="p-3">
         <Toast
           bg={toast.variant}
           show={toast.show}
           onClose={() => setToast((t) => ({ ...t, show: false }))}
+          autohide
+          delay={3000}
         >
-          <Toast.Header>
-            <strong className="me-auto"> Error</strong>
-          </Toast.Header>
+          {toast.title && (
+            <Toast.Header>
+              <strong className="me-auto"> {toast.title}</strong>
+            </Toast.Header>
+          )}
+
           <Toast.Body className="text-white">{toast.message}</Toast.Body>
         </Toast>
       </ToastContainer>

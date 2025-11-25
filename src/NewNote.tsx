@@ -17,6 +17,7 @@ export default function NewNote({
         onSubmit={onSubmit}
         onAddTag={onAddTag}
         availableTags={availableTags}
+        successMessage="Note added successfully!"
       />
     </>
   );

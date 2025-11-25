@@ -7,10 +7,13 @@ import { type Tag } from "./App";
 import { v4 as uuidv4 } from "uuid";
 import { ColorPicker } from "./Colorpicker";
 import Tiptap from "./Tiptap";
+import { useAppToast } from "./Toast";
+
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
+  successMessage: string;
 } & Partial<NoteData>;
 
 export function NoteForm({
@@ -21,12 +24,14 @@ export function NoteForm({
   markdown = "",
   tags = [],
   color = "#EBEBEA",
+  successMessage,
 }: NoteFormProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const [bodyContent, setBodyContent] = useState("");
   const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const [selectedColor, setSelectedColor] = useState(color);
   const navigate = useNavigate();
+  const { showToast } = useAppToast();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -36,7 +41,10 @@ export function NoteForm({
       tags: selectedTags,
       color: selectedColor,
     });
-
+    showToast({
+      message: successMessage,
+      variant: "success",
+    });
     navigate("..");
   }
   return (

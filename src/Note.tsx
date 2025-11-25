@@ -26,7 +26,7 @@ export default function Note({ onDelete }: NoteProps) {
     <>
       <div
         ref={noteContentRef}
-        className="stickyNoteDetail p-4  shadow-lg pinnedNote "
+        className="sticky-note-detail p-4  shadow-lg pinnedNote "
         style={{
           background: `linear-gradient(${note.color}, ${note.color}d0)`,
         }}

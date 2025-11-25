@@ -6,8 +6,11 @@ export default function Header() {
   return (
     <Row>
       <Col>
-        <header className="align-items-center">
-          <Link to="/" className="text-decoration-none d-flex">
+        <header>
+          <Link
+            to="/"
+            className="text-decoration-none d-flex align-items-center"
+          >
             <img src={pencilIcon} alt="note app logo" className="logo" />
             <h1 className="main-header">NoteFlow</h1>
           </Link>
