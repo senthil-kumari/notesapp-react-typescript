@@ -1,13 +1,20 @@
 .logo {
-  width: 55px;
+  width: 8rem;
 }
+
+@media (min-width: 768px) {
+  .logo {
+    width: 12rem;
+  }
+}
+
 header{
   position: fixed;
   top: 0;
   background: #fff;
   z-index: 1;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 header::after {
   content: "";

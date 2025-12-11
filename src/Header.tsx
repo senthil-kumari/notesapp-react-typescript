@@ -1,5 +1,6 @@
 import { Col, Row } from "react-bootstrap";
-import pencilIcon from "./assets/pencil-logo.jpg";
+import logo from "./assets/logo.svg";
+
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -11,8 +12,7 @@ export default function Header() {
             to="/"
             className="text-decoration-none d-flex align-items-center"
           >
-            <img src={pencilIcon} alt="note app logo" className="logo" />
-            <h1 className="main-header">NoteFlow</h1>
+            <img src={logo} alt="noteflow app logo" className="logo" />
           </Link>
         </header>
       </Col>
