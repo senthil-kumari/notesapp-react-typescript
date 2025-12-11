@@ -148,7 +148,9 @@ const Tiptap = ({ setBodyContent, bodyContent }: TiptapProps) => {
       </div>
       <div className="text-editor">
         <MenuBar editor={editor} />
-        <EditorContent editor={editor} />
+        <div className="tiptap-editor-container">
+          <EditorContent editor={editor} />
+        </div>
       </div>
     </>
   );

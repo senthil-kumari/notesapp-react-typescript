@@ -1,9 +1,18 @@
 import type { Tag } from "./App";
-import { Button, Col, Form, Modal, Row, Stack } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Form,
+  FormGroup,
+  Modal,
+  Row,
+  Stack,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { useMemo, useState } from "react";
 import { NoteCard } from "./NoteCard";
+import ColorFilter from "./ColorFilter";
 
 type NoteListProps = {
   availableTags: Tag[];
@@ -36,6 +45,7 @@ export default function NoteList({
 }: NoteListProps) {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+  const [color, setColor] = useState("");
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false);
 
   const filteredNotes = useMemo(() => {
@@ -46,10 +56,11 @@ export default function NoteList({
         (selectedTags.length === 0 ||
           selectedTags.every((tag) =>
             note.tags.some((noteTag) => noteTag.id === tag.id)
-          ))
+          )) &&
+        (color === "" || note.color === color)
       );
     });
-  }, [title, selectedTags, notes]);
+  }, [title, selectedTags, notes, color]);
 
   return (
     <>
@@ -72,7 +83,7 @@ export default function NoteList({
 
       <Form>
         <Row className="mb-4">
-          <Col>
+          <Col xs={12} md={4} className="mb-2">
             <Form.Group controlId="title">
               <Form.Label>🔎Search by Title</Form.Label>
               <Form.Control
@@ -84,7 +95,13 @@ export default function NoteList({
               />
             </Form.Group>
           </Col>
-          <Col>
+          <Col xs={12} md={4} className="mb-2">
+            <FormGroup controlId="color">
+              <Form.Label>🎨Filter by color</Form.Label>
+              <ColorFilter selectedColor={color} setSelectedColor={setColor} />
+            </FormGroup>
+          </Col>
+          <Col xs={12} md={4} className="mb-2">
             <Form.Group controlId="tags">
               <Form.Label>Filter by Tags</Form.Label>
               <ReactSelect
